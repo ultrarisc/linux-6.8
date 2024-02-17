@@ -8,7 +8,6 @@
 
 #include <linux/bug.h>
 
-#include <asm/barrier.h>
 #include <asm/alternative-macros.h>
 #include <asm/fence.h>
 #include <asm/hwcap.h>
