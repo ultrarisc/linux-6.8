@@ -2906,14 +2906,14 @@ lpfc_sli_def_mbox_cmpl(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 				vport,
 				KERN_INFO, LOG_MBOX | LOG_DISCOVERY,
 				"1438 UNREG cmpl deferred mbox x%x "
-				"on NPort x%x Data: x%x x%x x%px x%x x%x\n",
+				"on NPort x%x Data: x%lx x%x x%px x%x x%x\n",
 				ndlp->nlp_rpi, ndlp->nlp_DID,
 				ndlp->nlp_flag, ndlp->nlp_defer_did,
 				ndlp, vport->load_flag, kref_read(&ndlp->kref));
 
-			if ((ndlp->nlp_flag & NLP_UNREG_INP) &&
-			    (ndlp->nlp_defer_did != NLP_EVT_NOTHING_PENDING)) {
-				ndlp->nlp_flag &= ~NLP_UNREG_INP;
+			if (test_bit(NLP_UNREG_INP, &ndlp->nlp_flag) &&
+			    ndlp->nlp_defer_did != NLP_EVT_NOTHING_PENDING) {
+				clear_bit(NLP_UNREG_INP, &ndlp->nlp_flag);
 				ndlp->nlp_defer_did = NLP_EVT_NOTHING_PENDING;
 				lpfc_issue_els_plogi(vport, ndlp->nlp_DID, 0);
 			}
@@ -2963,7 +2963,7 @@ lpfc_sli4_unreg_rpi_cmpl_clr(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 {
 	struct lpfc_vport  *vport = pmb->vport;
 	struct lpfc_nodelist *ndlp;
-	u32 unreg_inp;
+	bool unreg_inp;
 
 	ndlp = pmb->ctx_ndlp;
 	if (pmb->u.mb.mbxCommand == MBX_UNREG_LOGIN) {
@@ -2976,7 +2976,7 @@ lpfc_sli4_unreg_rpi_cmpl_clr(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 					 vport, KERN_INFO,
 					 LOG_MBOX | LOG_SLI | LOG_NODE,
 					 "0010 UNREG_LOGIN vpi:x%x "
-					 "rpi:%x DID:%x defer x%x flg x%x "
+					 "rpi:%x DID:%x defer x%x flg x%lx "
 					 "x%px\n",
 					 vport->vpi, ndlp->nlp_rpi,
 					 ndlp->nlp_DID, ndlp->nlp_defer_did,
@@ -2986,11 +2986,9 @@ lpfc_sli4_unreg_rpi_cmpl_clr(struct lpfc_hba *phba, LPFC_MBOXQ_t *pmb)
 				/* Cleanup the nlp_flag now that the UNREG RPI
 				 * has completed.
 				 */
-				spin_lock_irq(&ndlp->lock);
-				unreg_inp = ndlp->nlp_flag & NLP_UNREG_INP;
-				ndlp->nlp_flag &=
-					~(NLP_UNREG_INP | NLP_LOGO_ACC);
-				spin_unlock_irq(&ndlp->lock);
+				unreg_inp = test_and_clear_bit(NLP_UNREG_INP,
+							       &ndlp->nlp_flag);
+				clear_bit(NLP_LOGO_ACC, &ndlp->nlp_flag);
 
 				/* Check to see if there are any deferred
 				 * events to process
@@ -14347,9 +14345,7 @@ lpfc_sli4_sp_handle_mbox_event(struct lpfc_hba *phba, struct lpfc_mcqe *mcqe)
 			 * an unsolicited PLOGI from the same NPortId from
 			 * starting another mailbox transaction.
 			 */
-			spin_lock_irqsave(&ndlp->lock, iflags);
-			ndlp->nlp_flag |= NLP_UNREG_INP;
-			spin_unlock_irqrestore(&ndlp->lock, iflags);
+			set_bit(NLP_UNREG_INP, &ndlp->nlp_flag);
 			lpfc_unreg_login(phba, vport->vpi,
 					 pmbox->un.varWords[0], pmb);
 			pmb->mbox_cmpl = lpfc_mbx_cmpl_dflt_rpi;
@@ -21086,11 +21082,7 @@ lpfc_cleanup_pending_mbox(struct lpfc_vport *vport)
 				/* Unregister the RPI when mailbox complete */
 				mb->mbox_flag |= LPFC_MBX_IMED_UNREG;
 				restart_loop = 1;
-				spin_unlock_irq(&phba->hbalock);
-				spin_lock(&ndlp->lock);
-				ndlp->nlp_flag &= ~NLP_IGNR_REG_CMPL;
-				spin_unlock(&ndlp->lock);
-				spin_lock_irq(&phba->hbalock);
+				clear_bit(NLP_IGNR_REG_CMPL, &ndlp->nlp_flag);
 				break;
 			}
 		}
@@ -21105,9 +21097,7 @@ lpfc_cleanup_pending_mbox(struct lpfc_vport *vport)
 			ndlp = (struct lpfc_nodelist *)mb->ctx_ndlp;
 			mb->ctx_ndlp = NULL;
 			if (ndlp) {
-				spin_lock(&ndlp->lock);
-				ndlp->nlp_flag &= ~NLP_IGNR_REG_CMPL;
-				spin_unlock(&ndlp->lock);
+				clear_bit(NLP_IGNR_REG_CMPL, &ndlp->nlp_flag);
 				lpfc_nlp_put(ndlp);
 			}
 		}
@@ -21116,9 +21106,7 @@ lpfc_cleanup_pending_mbox(struct lpfc_vport *vport)
 
 	/* Release the ndlp with the cleaned-up active mailbox command */
 	if (act_mbx_ndlp) {
-		spin_lock(&act_mbx_ndlp->lock);
-		act_mbx_ndlp->nlp_flag &= ~NLP_IGNR_REG_CMPL;
-		spin_unlock(&act_mbx_ndlp->lock);
+		clear_bit(NLP_IGNR_REG_CMPL, &act_mbx_ndlp->nlp_flag);
 		lpfc_nlp_put(act_mbx_ndlp);
 	}
 }
