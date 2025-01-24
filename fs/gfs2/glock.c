@@ -834,6 +834,7 @@ skip_inval:
 	}
 
 	if (ls->ls_ops->lm_lock) {
+		set_bit(GLF_PENDING_REPLY, &gl->gl_flags);
 		spin_unlock(&gl->gl_lockref.lock);
 		ret = ls->ls_ops->lm_lock(gl, target, lck_flags);
 		spin_lock(&gl->gl_lockref.lock);
@@ -852,6 +853,7 @@ skip_inval:
 			/* The operation will be completed asynchronously. */
 			return;
 		}
+		clear_bit(GLF_PENDING_REPLY, &gl->gl_flags);
 	}
 
 	/* Complete the operation now. */
@@ -1995,6 +1997,7 @@ void gfs2_glock_complete(struct gfs2_glock *gl, int ret)
 	struct lm_lockstruct *ls = &gl->gl_name.ln_sbd->sd_lockstruct;
 
 	spin_lock(&gl->gl_lockref.lock);
+	clear_bit(GLF_PENDING_REPLY, &gl->gl_flags);
 	gl->gl_reply = ret;
 
 	if (unlikely(test_bit(DFL_BLOCK_LOCKS, &ls->ls_recover_flags))) {
@@ -2378,6 +2381,8 @@ static const char *gflags2str(char *buf, const struct gfs2_glock *gl)
 		*p++ = 'f';
 	if (test_bit(GLF_INVALIDATE_IN_PROGRESS, gflags))
 		*p++ = 'i';
+	if (test_bit(GLF_PENDING_REPLY, gflags))
+		*p++ = 'R';
 	if (test_bit(GLF_REPLY_PENDING, gflags))
 		*p++ = 'r';
 	if (test_bit(GLF_INITIAL, gflags))
