@@ -530,7 +530,7 @@ static const struct sdw_port_config wsa883x_pconfig[WSA883X_MAX_SWR_PORTS] = {
 		.ch_mask = 0x3,
 	}, {	/* IV feedback */
 		.num = 4,
-		.ch_mask = 0x3,
+		.ch_mask = 0x1,
 	},
 };
 
