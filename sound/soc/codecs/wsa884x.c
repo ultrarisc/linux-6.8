@@ -840,7 +840,7 @@ static const struct sdw_port_config wsa884x_pconfig[WSA884X_MAX_SWR_PORTS] = {
 		.ch_mask = 0x1,
 	}, {
 		.num = WSA884X_PORT_VISENSE + 1,
-		.ch_mask = 0x3,
+		.ch_mask = 0x1,
 	}, {
 		.num = WSA884X_PORT_CPS + 1,
 		.ch_mask = 0x3,
