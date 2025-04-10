@@ -1456,6 +1456,7 @@ hit_next:
 		if (IS_ERR(inserted_state)) {
 			err = PTR_ERR(inserted_state);
 			extent_io_tree_panic(tree, prealloc, "insert", err);
+			goto out;
 		}
 		cache_state(inserted_state, cached_state);
 		if (inserted_state == prealloc)
