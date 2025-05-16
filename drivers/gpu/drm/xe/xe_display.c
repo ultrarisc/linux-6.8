@@ -106,6 +106,8 @@ int xe_display_create(struct xe_device *xe)
 	spin_lock_init(&xe->display.fb_tracking.lock);
 
 	xe->display.hotplug.dp_wq = alloc_ordered_workqueue("xe-dp", 0);
+	if (!xe->display.hotplug.dp_wq)
+		return -ENOMEM;
 
 	drmm_mutex_init(&xe->drm, &xe->sb_lock);
 	xe->enabled_irq_mask = ~0;
