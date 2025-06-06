@@ -472,6 +472,7 @@ restart:
 				pte_offset_map_lock(mm, pmd, addr, &ptl);
 			if (!start_pte)
 				break;
+			flush_tlb_batched_pending(mm);
 			arch_enter_lazy_mmu_mode();
 			pte--;
 			addr -= PAGE_SIZE;
@@ -694,6 +695,7 @@ static int madvise_free_pte_range(pmd_t *pmd, unsigned long addr,
 				pte_offset_map_lock(mm, pmd, addr, &ptl);
 			if (!start_pte)
 				break;
+			flush_tlb_batched_pending(mm);
 			arch_enter_lazy_mmu_mode();
 			pte--;
 			addr -= PAGE_SIZE;
