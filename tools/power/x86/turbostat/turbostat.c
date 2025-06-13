@@ -36,6 +36,7 @@
 #include <linux/perf_event.h>
 #include <asm/unistd.h>
 #include <stdbool.h>
+#include <limits.h>
 
 #define UNUSED(x) (void)(x)
 
