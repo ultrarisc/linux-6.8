@@ -4454,8 +4454,16 @@ int check_for_cap_sys_rawio(void)
 	cap_flag_value_t cap_flag_value;
 
 	caps = cap_get_proc();
-	if (caps == NULL)
+	if (caps == NULL) {
+		/*
+		 * CONFIG_MULTIUSER=n kernels have no cap_get_proc()
+		 * Allow them to continue and attempt to access MSRs
+		 */
+		if (errno == ENOSYS)
+			return 0;
+
 		err(-6, "cap_get_proc\n");
+	}
 
 	if (cap_get_flag(caps, CAP_SYS_RAWIO, CAP_EFFECTIVE, &cap_flag_value))
 		err(-6, "cap_get\n");
