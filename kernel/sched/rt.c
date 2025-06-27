@@ -4,6 +4,8 @@
  * policies)
  */
 
+#include <linux/cpuset.h>
+
 int sched_rr_timeslice = RR_TIMESLICE;
 /* More than 4 hours if BW_SHIFT equals 20. */
 static const u64 max_rt_runtime = MAX_BW;
@@ -2988,6 +2990,12 @@ undo:
 		sysctl_sched_rt_runtime = old_runtime;
 	}
 	mutex_unlock(&mutex);
+
+	/*
+	 * After changing maximum available bandwidth for DEADLINE, we need to
+	 * recompute per root domain and per cpus variables accordingly.
+	 */
+	rebuild_sched_domains();
 
 	return ret;
 }
