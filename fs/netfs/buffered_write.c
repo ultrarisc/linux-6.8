@@ -357,10 +357,12 @@ ssize_t netfs_perform_write(struct kiocb *iocb, struct iov_iter *iter,
 			if (ctx->ops->update_i_size) {
 				ctx->ops->update_i_size(inode, pos);
 			} else {
+				spin_lock(&inode->i_lock);
 				i_size_write(inode, pos);
 #if IS_ENABLED(CONFIG_FSCACHE)
 				fscache_update_cookie(ctx->cache, NULL, &pos);
 #endif
+				spin_unlock(&inode->i_lock);
 			}
 		}
 		written += copied;
