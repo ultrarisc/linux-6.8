@@ -482,7 +482,6 @@
 	vmmc-supply = <&vdd_mmc1>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_mmc1_pins_default>;
-	disable-wp;
 	bootph-all;
 };
 
