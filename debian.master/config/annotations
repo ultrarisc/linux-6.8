@@ -6808,7 +6808,7 @@ CONFIG_IPMI_WATCHDOG                            policy<{'amd64': 'm', 'arm64': '
 CONFIG_IPQ_APSS_6018                            policy<{'arm64': 'm', 'armhf': 'm'}>
 CONFIG_IPQ_APSS_PLL                             policy<{'arm64': 'm', 'armhf': 'm'}>
 CONFIG_IPQ_GCC_4019                             policy<{'arm64': 'm', 'armhf': 'm'}>
-CONFIG_IPQ_GCC_5018                             policy<{'arm64': 'm'}>
+CONFIG_IPQ_GCC_5018                             policy<{'arm64': 'm', 'armhf': 'm'}>
 CONFIG_IPQ_GCC_5332                             policy<{'arm64': 'm'}>
 CONFIG_IPQ_GCC_6018                             policy<{'arm64': 'm', 'armhf': 'm'}>
 CONFIG_IPQ_GCC_806X                             policy<{'arm64': '-', 'armhf': 'm'}>
