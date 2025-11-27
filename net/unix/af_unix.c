@@ -2603,8 +2603,7 @@ static struct sk_buff *manage_oob(struct sk_buff *skb, struct sock *sk,
 			__skb_unlink(read_skb, &sk->sk_receive_queue);
 		}
 
-		if (!skb)
-			goto unlock;
+		goto unlock;
 	}
 
 	if (skb != u->oob_skb)
@@ -3123,13 +3122,9 @@ static int unix_ioctl(struct socket *sock, unsigned int cmd, unsigned long arg)
 			skb = skb_peek(&sk->sk_receive_queue);
 			if (skb) {
 				struct sk_buff *oob_skb = READ_ONCE(u->oob_skb);
-				struct sk_buff *next_skb;
-
-				next_skb = skb_peek_next(skb, &sk->sk_receive_queue);
 
 				if (skb == oob_skb ||
-				    (!unix_skb_len(skb) &&
-				     (!oob_skb || next_skb == oob_skb)))
+				    (!oob_skb && !unix_skb_len(skb)))
 					answ = 1;
 			}
 
