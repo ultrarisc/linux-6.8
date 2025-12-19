@@ -600,6 +600,11 @@ static inline void update_turbo_state(void)
 {
 	u64 misc_en;
 
+	if (!cpu_feature_enabled(X86_FEATURE_IDA)) {
+		global.turbo_disabled = true;
+		return;
+	}
+
 	rdmsrl(MSR_IA32_MISC_ENABLE, misc_en);
 	global.turbo_disabled = misc_en & MSR_IA32_MISC_ENABLE_TURBO_DISABLE;
 }
