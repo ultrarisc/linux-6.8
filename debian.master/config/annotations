@@ -3292,6 +3292,7 @@ CONFIG_CPU5_WDT                                 policy<{'amd64': 'm'}>
 CONFIG_CPUFREQ_DT_PLATDEV                       policy<{'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
 CONFIG_CPUMASK_OFFSTACK                         policy<{'amd64': 'y'}>
 CONFIG_CPUSETS                                  policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y', 's390x': 'y'}>
+CONFIG_CPUSETS_V1                               policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y', 's390x': 'y'}>
 CONFIG_CPU_32v6K                                policy<{'armhf': 'y'}>
 CONFIG_CPU_32v7                                 policy<{'armhf': 'y'}>
 CONFIG_CPU_ABRT_EV7                             policy<{'armhf': 'y'}>
