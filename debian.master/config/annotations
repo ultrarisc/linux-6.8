@@ -4390,27 +4390,27 @@ CONFIG_DRM_VKMS                                 policy<{'amd64': 'm', 'arm64': '
 CONFIG_DRM_VMWGFX                               policy<{'amd64': 'm', 'arm64': 'm'}>
 CONFIG_DRM_VMWGFX_MKSSTATS                      policy<{'amd64': 'n'}>
 CONFIG_DRM_VRAM_HELPER                          policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm', 's390x': 'm'}>
-CONFIG_DRM_XE                                   policy<{'amd64': 'm', 'arm64': 'm', 'ppc64el': 'm', 'riscv64': 'm', 's390x': 'n'}>
+CONFIG_DRM_XE                                   policy<{'amd64': 'm', 'arm64': 'm', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'm', 's390x': 'n'}>
 CONFIG_DRM_XEN                                  policy<{'amd64': 'y', 'arm64': 'y'}>
 CONFIG_DRM_XEN_FRONTEND                         policy<{'amd64': 'm', 'arm64': 'm', 'armhf': '-'}>
-CONFIG_DRM_XE_DEBUG                             policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_DEBUG_MEM                         policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_DEBUG_SRIOV                       policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_DEBUG_VM                          policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_DISPLAY                           policy<{'amd64': 'y', 'arm64': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
-CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT         policy<{'amd64': 'y', 'arm64': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
-CONFIG_DRM_XE_FORCE_PROBE                       policy<{'amd64': '""', 'arm64': '""', 'ppc64el': '""', 'riscv64': '""'}>
-CONFIG_DRM_XE_JOB_TIMEOUT_MAX                   policy<{'amd64': '10000', 'arm64': '10000', 'ppc64el': '10000', 'riscv64': '10000'}>
-CONFIG_DRM_XE_JOB_TIMEOUT_MIN                   policy<{'amd64': '1', 'arm64': '1', 'ppc64el': '1', 'riscv64': '1'}>
-CONFIG_DRM_XE_LARGE_GUC_BUFFER                  policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_PREEMPT_TIMEOUT                   policy<{'amd64': '640000', 'arm64': '640000', 'ppc64el': '640000', 'riscv64': '640000'}>
-CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX               policy<{'amd64': '10000000', 'arm64': '10000000', 'ppc64el': '10000000', 'riscv64': '10000000'}>
-CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN               policy<{'amd64': '1', 'arm64': '1', 'ppc64el': '1', 'riscv64': '1'}>
-CONFIG_DRM_XE_SIMPLE_ERROR_CAPTURE              policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_TIMESLICE_MAX                     policy<{'amd64': '10000000', 'arm64': '10000000', 'ppc64el': '10000000', 'riscv64': '10000000'}>
-CONFIG_DRM_XE_TIMESLICE_MIN                     policy<{'amd64': '1', 'arm64': '1', 'ppc64el': '1', 'riscv64': '1'}>
-CONFIG_DRM_XE_USERPTR_INVAL_INJECT              policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
-CONFIG_DRM_XE_WERROR                            policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 'riscv64': 'n'}>
+CONFIG_DRM_XE_DEBUG                             policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_DEBUG_MEM                         policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_DEBUG_SRIOV                       policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_DEBUG_VM                          policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_DISPLAY                           policy<{'amd64': 'y', 'arm64': 'y', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'y'}>
+CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT         policy<{'amd64': 'y', 'arm64': 'y', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'y'}>
+CONFIG_DRM_XE_FORCE_PROBE                       policy<{'amd64': '""', 'arm64': '""', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '""'}>
+CONFIG_DRM_XE_JOB_TIMEOUT_MAX                   policy<{'amd64': '10000', 'arm64': '10000', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '10000'}>
+CONFIG_DRM_XE_JOB_TIMEOUT_MIN                   policy<{'amd64': '1', 'arm64': '1', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '1'}>
+CONFIG_DRM_XE_LARGE_GUC_BUFFER                  policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_PREEMPT_TIMEOUT                   policy<{'amd64': '640000', 'arm64': '640000', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '640000'}>
+CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX               policy<{'amd64': '10000000', 'arm64': '10000000', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '10000000'}>
+CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN               policy<{'amd64': '1', 'arm64': '1', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '1'}>
+CONFIG_DRM_XE_SIMPLE_ERROR_CAPTURE              policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_TIMESLICE_MAX                     policy<{'amd64': '10000000', 'arm64': '10000000', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '10000000'}>
+CONFIG_DRM_XE_TIMESLICE_MIN                     policy<{'amd64': '1', 'arm64': '1', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': '1'}>
+CONFIG_DRM_XE_USERPTR_INVAL_INJECT              policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
+CONFIG_DRM_XE_WERROR                            policy<{'amd64': 'n', 'arm64': 'n', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'n'}>
 CONFIG_DRM_ZYNQMP_DPSUB                         policy<{'arm64': 'm'}>
 CONFIG_DS1682                                   policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm', 's390x': 'n'}>
 CONFIG_DS1803                                   policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm'}>
@@ -12356,7 +12356,7 @@ CONFIG_SND_HDA_EXT_CORE                         policy<{'amd64': 'm', 'arm64': '
 CONFIG_SND_HDA_GENERIC                          policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm'}>
 CONFIG_SND_HDA_GENERIC_LEDS                     policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
 CONFIG_SND_HDA_HWDEP                            policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
-CONFIG_SND_HDA_I915                             policy<{'amd64': 'y', 'arm64': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
+CONFIG_SND_HDA_I915                             policy<{'amd64': 'y', 'arm64': 'y', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'y'}>
 CONFIG_SND_HDA_INPUT_BEEP                       policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
 CONFIG_SND_HDA_INPUT_BEEP_MODE                  policy<{'amd64': '0', 'arm64': '0', 'armhf': '0', 'ppc64el': '0', 'riscv64': '0'}>
 CONFIG_SND_HDA_INTEL                            policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm'}>
@@ -15132,7 +15132,7 @@ CONFIG_VL6180                                   policy<{'amd64': 'm', 'arm64': '
 CONFIG_VLAN_8021Q                               policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'ppc64el': 'm', 'riscv64': 'm', 's390x': 'm'}>
 CONFIG_VLAN_8021Q_GVRP                          policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y', 's390x': 'y'}>
 CONFIG_VLAN_8021Q_MVRP                          policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'ppc64el': 'y', 'riscv64': 'y', 's390x': 'y'}>
-CONFIG_VMAP_PFN                                 policy<{'amd64': 'y', 'arm64': 'y', 'ppc64el': 'y', 'riscv64': 'y'}>
+CONFIG_VMAP_PFN                                 policy<{'amd64': 'y', 'arm64': 'y', 'arm64-generic-64k': '-', 'ppc64el': '-', 'riscv64': 'y'}>
 CONFIG_VMAP_STACK                               policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'riscv64': 'y', 's390x': 'y'}>
 CONFIG_VMCP                                     policy<{'s390x': 'y'}>
 CONFIG_VMCP_CMA_SIZE                            policy<{'s390x': '4'}>
