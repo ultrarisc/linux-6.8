@@ -116,7 +116,7 @@ static struct platform_driver ur_pinctrl_driver = {
 		.of_match_table = ur_pinctrl_of_match,
 	},
 	.probe = ur_pinctrl_probe,
-	.remove = ur_pinctrl_remove,
+	.remove_new = ur_pinctrl_remove,
 };
 
 module_platform_driver(ur_pinctrl_driver);
