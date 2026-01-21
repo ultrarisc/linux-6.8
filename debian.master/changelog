@@ -1,3 +1,181 @@
+linux (6.8.0-100.100.u1) noble; urgency=medium
+
+  * UltraRISC architecture support
+    - riscv: add UltraRISC SoC family Kconfig support
+    - riscv: defconfig: Update configuration for ULTRARISC architecture
+    - riscv: configs: Add UltraRISC CP100 defconfig files
+    - support dp1000 compatible
+
+  * UltraRISC device tree updates
+    - riscv: dts: ultrarisc: add dtsi/dts of DP1000
+    - dt-bindings: pinctrl: Add UltraRISC DP1000 pinctrl bindings
+    - dt-bindings: interrupt-controller: Add UltraRISC DP1000 PLIC
+
+  * UltraRISC driver support
+    - pinctrl: ultrarisc: dp1000: Use remove_new callback instead of remove
+    - riscv: ultrarisc: pinctrl: add pinctrl dirver of DP1000
+    - hwmon: add corepvt driver of UltraRISC DP1000
+    - net: stmmac: ultrarisc: Switch to devm managed dt configuration
+    - bring up gmac
+    - riscv: ultrarisc: 8250_dw: support DP1000 uart
+    - riscv: ultrarisc: pci: support DP1000 pcie rc
+
+  * PCI support improvements
+    - PCI: dwc: Support 16-lane operation
+    - PCI: dwc: ultrarisc: Update compatible string for DP1000 SoC
+    - PCI: dwc: Use multiple ATU regions for large bridge windows
+    - PCI: dwc: Rename cpu_addr to parent_bus_addr for ATU configuration
+    - PCI: dwc: ep: Add 'address' alignment to 'size' check in dw_pcie_prog_ep_inbound_atu()
+    - PCI: dwc: Use resource start as ioremap() input in dw_pcie_pme_turn_off()
+    - PCI: dwc: Add generic MSG TLP support for sending PME_Turn_Off when system suspend
+    - PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+    - PCI: Add PCIE_MSG_CODE_ASSERT_INTx message macros
+    - PCI: dwc: Add outbound MSG TLPs support
+    - PCI: dwc: Consolidate args of dw_pcie_prog_outbound_atu() into a structure
+    - PCI: tegra: Silence 'set affinity failed' warning
+    - PCI: rcar-host: Silence 'set affinity failed' warning
+    - PCI: mobiveil: Silence 'set affinity failed' warning
+    - PCI: mediatek: Silence 'set affinity failed' warning
+    - PCI: mediatek-gen3: Silence 'set affinity failed' warning
+    - PCI: dwc: Silence 'set affinity failed' warning
+    - PCI: brcmstb: Silence 'set affinity failed' warning
+    - PCI: altera-msi: Silence 'set affinity failed' warning
+    - PCI: aardvark: Silence 'set affinity failed' warning
+    - genirq/msi: Silence 'set affinity failed' warning
+
+  * RISC-V architecture improvements
+    - riscv: Add qspinlock support
+    - riscv: Add ISA extension parsing for Ziccrse
+    - riscv: Implement xchg8/16() using Zabha
+    - riscv: Implement arch_cmpxchg128() using Zacas
+    - riscv: Improve zacas fully-ordered cmpxchg()
+    - riscv: Implement cmpxchg8/16() using Zabha
+    - riscv: Stop emitting preventive sfence.vma for new userspace mappings with Svvptc
+    - riscv: Stop emitting preventive sfence.vma for new vmalloc mappings
+    - riscv: Add ISA extension parsing for Svvptc
+    - riscv: Only flush the mm icache when setting an exec pte
+    - riscv: Implement cmpxchg32/64() using Zacas
+    - riscv: Do not fail to build on byte/halfword operations with Zawrs
+    - riscv: Move cpufeature.h macros into their own header
+    - riscv: cpufeature: Extract common elements from extension checking
+    - riscv: Introduce vendor variants of extension helpers
+    - riscv: Add vendor extensions to /proc/cpuinfo
+    - riscv: Fix fully ordered LR/SC xchg[8|16]() implementations
+    - riscv: cmpxchg: implement arch_cmpxchg64_{relaxed|acquire|release}
+    - riscv: select ARCH_USE_CMPXCHG_LOCKREF
+    - riscv/cmpxchg: Implement xchg for variables of size 1 and 2
+    - riscv/cmpxchg: Implement cmpxchg for variables of size 1 and 2
+    - riscv/atomic.h : Deduplicate arch_atomic.*
+    - riscv/cmpxchg: Deduplicate cmpxchg() asm and macros
+    - riscv/cmpxchg: Deduplicate xchg() asm functions
+    - riscv/barrier: Consolidate fence definitions
+    - riscv/barrier: Define RISCV_FULL_BARRIER
+    - riscv/barrier: Define __{mb,rmb,wmb}
+    - riscv: errata: Rename defines for Andes
+    - riscv: Extend cpufeature.c to detect vendor extensions
+    - perf: RISC-V: Introduce Andes PMU to support perf event sampling
+    - perf: RISC-V: Eliminate redundant interrupt enable/disable operations
+    - riscv: hwprobe: export Zawrs ISA extension
+    - riscv: Add Zawrs support for spinlocks
+    - riscv: Provide a definition for 'pause'
+    - riscv: hwprobe: export Zcmop ISA extension
+    - riscv: add ISA extension parsing for Zcmop
+    - riscv: hwprobe: export Zca, Zcf, Zcd and Zcb ISA extensions
+    - riscv: add ISA parsing for Zca, Zcf, Zcd and Zcb
+    - riscv: add ISA extensions validation callback
+    - riscv: hwprobe: export Zimop ISA extension
+    - riscv: add ISA extension parsing for Zimop
+    - riscv: vector: adjust minimum Vector requirement to ZVE32X
+    - riscv: cpufeature: add zve32[xf] and zve64[xfd] isa detection
+    - riscv: cpufeature: call match_isa_ext() for single-letter extensions
+    - riscv: vector: add a comment when calling riscv_setup_vsize()
+    - riscv: hwprobe: add zve Vector subextensions into hwprobe interface
+    - riscv: hwprobe: export Zihintpause ISA extension
+    - RISC-V: Check scalar unaligned access on all CPUs
+    - RISC-V: hwprobe: Add SCALAR to misaligned perf defines
+    - RISC-V: hwprobe: Add MISALIGNED_PERF key
+    - RISC-V: Provide the frequency of time CSR via hwprobe
+    - riscv: hwprobe: export highest virtual userspace address
+    - riscv: Set unaligned access speed at compile time
+    - riscv: Decouple emulated unaligned accesses from access speed
+    - riscv: lib: Introduce has_fast_unaligned_access()
+    - RISC-V: Enable IPI CPU Backtrace
+
+  * Interrupt controller improvements
+    - irqchip/sifive-plic: Add support for UltraRISC DP1000 PLIC
+    - irqchip/sifive-plic: Cache the interrupt enable state
+    - irqchip/sifive-plic: Respect mask state when setting affinity
+    - irqchip/sifive-plic: Use for_each_present_cpu() instead of for_each_cpu()
+    - irqchip/sifive-plic: Return error code on failure
+    - irqchip/sifive-plic: Add ACPI support
+    - irqchip/riscv-intc: Add ACPI support for AIA
+    - ACPI: RISC-V: Initialize GSI mapping structures
+    - ACPI: RISC-V: Implement function to reorder irqchip probe entries
+    - ACPI: bus: Add RINTC IRQ model for RISC-V
+    - ACPI: bus: Add acpi_riscv_init() function
+    - ACPI: scan: Add a weak arch_sort_irqchip_probe() to order the IRQCHIP probe
+    - irqchip/sifive-plic: Probe plic driver early for Allwinner D1 platform
+    - irqchip/sifive-plic: Chain to parent IRQ after handlers are ready
+    - irqchip/sifive-plic: Avoid explicit cpumask allocation on stack
+    - cpumask: Introduce cpumask_first_and_and()
+    - irqchip/sifive-plic: Improve locking safety by using irqsave/irqrestore
+    - irqchip/sifive-plic: Parse number of interrupts and contexts early in plic_probe()
+    - irqchip/sifive-plic: Cleanup PLIC contexts upon irqdomain creation failure
+    - irqchip/sifive-plic: Use riscv_get_intc_hwnode() to get parent fwnode
+    - irqchip/sifive-plic: Use devm_xyz() for managed allocation
+    - irqchip/sifive-plic: Use dev_xyz() in-place of pr_xyz()
+    - irqchip/sifive-plic: Convert PLIC driver into a platform driver
+    - irqchip/sifive-plic: Avoid interrupt ID 0 handling during suspend/resume
+    - irqchip/sifive-plic: Make use of __assign_bit()
+
+  * LED subsystem improvements
+    - leds: core: Omit set_brightness error message for a LED supporting hw trigger only
+    - leds: triggers: Add helper led_match_default_trigger
+    - leds: trigger: Stop exporting trigger_list
+    - leds: trigger: panic: Simplify led_trigger_set_panic
+    - leds: led-triggers: Improvements for default trigger
+    - leds: trigger: netdev: Check offload ability on interface up
+    - docs: ABI: sysfs-class-led-trigger-netdev: Document now hidable link_*
+    - leds: trigger: netdev: Display only supported link speed attribute
+    - leds: class: If no default trigger is given, make hw_control trigger the default trigger
+    - leds: trigger: netdev: Add module alias ledtrig:netdev
+    - leds: trigger: netdev: Skip setting baseline state in activate if hw-controlled
+    - leds: trigger: Load trigger modules on-demand if used as default trigger
+
+  * Network PHY fixes
+    - net: phy: realtek: Check the index value in led_hw_control_get
+    - net: phy: realtek: Fix setting of PHY LEDs Mode B bit on RTL8211F
+    - net: phy: realtek: Add support for PHY LEDs on RTL8211F
+
+  * Device tree binding updates
+    - dt-bindings: riscv: Add Ziccrse ISA extension description
+    - dt-bindings: riscv: Add Zabha ISA extension description
+    - dt-bindings: riscv: Add Svvptc ISA extension description
+    - dt-bindings: riscv: Add Zawrs ISA extension description
+    - dt-bindings: riscv: add Zcmop ISA extension description
+    - dt-bindings: riscv: add Zca, Zcf, Zcd and Zcb ISA extension description
+    - dt-bindings: riscv: add Zimop ISA extension description
+    - dt-bindings: riscv: add Zve32[xf] Zve64[xfd] ISA extension description
+
+  * KVM and virtualization improvements
+    - KVM: riscv: selftests: Add Zcmop extension to get-reg-list test
+    - RISC-V: KVM: Allow Zcmop extension for Guest/VM
+    - KVM: riscv: selftests: Add some Zc* extensions to get-reg-list test
+    - RISC-V: KVM: Allow Zca, Zcf, Zcd and Zcb extensions for Guest/VM
+    - KVM: riscv: selftests: Add Zimop extension to get-reg-list test
+    - RISC-V: KVM: Allow Zimop extension for Guest/VM
+    - selftest: run vector prctl test for ZVE32X
+
+  * Other improvements
+    - Revert "genirq/msi: Provide constants for PCI/IMS support"
+    - Revert "x86/apic/msi: Enable PCI/IMS"
+    - Revert "iommu/vt-d: Enable PCI/IMS"
+    - Revert "iommu/amd: Enable PCI/IMS"
+    - Revert "PCI/MSI: Provide IMS (Interrupt Message Store) support"
+    - Revert "PCI/MSI: Provide pci_ims_alloc/free_irq()"
+
+ -- Jia Wang <wangjia@ultrarisc.com>  Wed, 21 Jan 2026 16:38:02 +0800
+
 linux (6.8.0-100.100) noble; urgency=medium
 
   * noble/linux: 6.8.0-100.100 -proposed tracker (LP: #2138307)
