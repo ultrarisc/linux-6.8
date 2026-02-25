@@ -1,4 +1,4 @@
-linux (6.8.0-100.100.u1) noble; urgency=medium
+linux (6.8.0-100.100+ultrarisc1) noble; urgency=medium
 
   * UltraRISC architecture support
     - riscv: add UltraRISC SoC family Kconfig support
