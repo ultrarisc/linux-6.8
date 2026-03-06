@@ -558,7 +558,7 @@
 		plic: plic@9000000 {
 			#interrupt-cells = <1>;
 			#address-cells = <0>;
-			compatible = "ultrarisc,cp100-plic";
+			compatible = "ultrarisc,cp100-plic", "ultrarisc,dp1000-plic";
 			interrupt-controller;
 			interrupts-extended = <&cpu0_intc 0xb>, <&cpu0_intc 0x9>, <&cpu0_intc 0xa>,
 					      <&cpu1_intc 0xb>, <&cpu1_intc 0x9>, <&cpu1_intc 0xa>,
